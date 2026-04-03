@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.simon"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -38,14 +38,9 @@ dependencies {
 
 intellijPlatform {
     pluginConfiguration {
-        ideaVersion {
-            sinceBuild = "243"
-            untilBuild = "253.*"
-        }
-
-        changeNotes = """
-            Initial version
-        """.trimIndent()
+        changeNotes.set(provider {
+            """Initial version""".trimIndent()
+        })
     }
 
     // Disable buildSearchableOptions to avoid locale-related errors

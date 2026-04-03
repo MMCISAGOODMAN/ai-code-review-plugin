@@ -5,20 +5,37 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
-    <name>Ai-code-review-plugin</name>
+    <name>AI Code Review</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">SimonMa</vendor>
+    <vendor url="https://github.com/MMCISAGOODMAN/ai-code-review-plugin">SimonMa</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        AI-powered code review and refactoring tool for IntelliJ IDEA.<br>
-        Features:<br>
-        • Analyze Java code for potential bugs and issues<br>
-        • Identify performance problems and security vulnerabilities<br>
-        • Suggest code improvements and best practices<br>
-        • Powered by OpenAI's GPT models<br>
+        AI-powered code review and refactoring tool for IntelliJ IDEA.<br><br>
+
+        <b>Key Features:</b><br>
+        • <b>AI Analysis</b> - Intelligent code review using OpenAI-compatible APIs<br>
+        • <b>Bug Detection</b> - Identifies potential null pointer exceptions, resource leaks, concurrency issues<br>
+        • <b>Performance Optimization</b> - Finds performance bottlenecks and inefficient patterns<br>
+        • <b>Security Scanning</b> - Detects common security vulnerabilities<br>
+        • <b>Code Style</b> - Enforces Java best practices and coding standards<br>
+        • <b>Smart Suggestions</b> - Provides actionable code improvements with professional dialogs<br><br>
+
+        <b>Flexible Configuration:</b><br>
+        • Configurable AI endpoints (OpenAI, proxies, self-hosted models)<br>
+        • Secure API key management<br>
+        • Professional suggestion dialogs with proper sizing and centering<br>
+        • Copy-to-clipboard functionality<br>
+        • Multi-language support (English/Chinese)<br>
+        • Keyboard shortcuts and context menu integration<br><br>
+
+        <b>Perfect for:</b><br>
+        • Java developers seeking AI-powered code reviews<br>
+        • Teams wanting consistent code quality standards<br>
+        • Developers using custom AI models or proxy services<br>
+        • Anyone looking to improve code quality with intelligent suggestions
     ]]></description>
 
     <!-- Product and plugin compatibility requirements.
