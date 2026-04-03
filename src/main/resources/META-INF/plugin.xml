@@ -8,22 +8,36 @@
     <name>Ai-code-review-plugin</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor url="https://www.yourcompany.com">SimonMa</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
+        AI-powered code review and refactoring tool for IntelliJ IDEA.<br>
+        Features:<br>
+        • Analyze Java code for potential bugs and issues<br>
+        • Identify performance problems and security vulnerabilities<br>
+        • Suggest code improvements and best practices<br>
+        • Powered by OpenAI's GPT models<br>
     ]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <toolWindow id="AI Review" anchor="bottom" factoryClass="com.simon.codereview.ui.ReviewToolWindowFactory" />
+        <applicationService serviceImplementation="com.simon.codereview.settings.AppSettingsState" />
+        <applicationConfigurable groupId="tools" displayName="AI Code Review" id="com.simon.codereview.settings.AppSettingsConfigurable" instance="com.simon.codereview.settings.AppSettingsConfigurable" />
     </extensions>
+
+    <actions>
+        <action id="AiReviewAction" class="com.simon.codereview.actions.AiReviewAction" text="AI Code Review" description="Send selected code to AI for review">
+            <add-to-group group-id="EditorPopupMenu" anchor="last" />
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt R" />
+        </action>
+    </actions>
 </idea-plugin>

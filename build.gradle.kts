@@ -1,3 +1,11 @@
+/*
+ * build.gradle.kts
+ *
+ * Created on 2026-04-03
+ *
+ * Copyright (C) 2026 Volkswagen AG, All rights reserved.
+ */
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
@@ -23,19 +31,25 @@ dependencies {
 
         // Add necessary plugin dependencies for compilation here, example:
         // bundledPlugin("com.intellij.java")
+        implementation("com.squareup.okhttp3:okhttp:4.12.0")
+        implementation("com.google.code.gson:gson:2.10.1")
     }
 }
 
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "251"
+            sinceBuild = "243"
+            untilBuild = "253.*"
         }
 
         changeNotes = """
             Initial version
         """.trimIndent()
     }
+
+    // Disable buildSearchableOptions to avoid locale-related errors
+    buildSearchableOptions = false
 }
 
 tasks {
@@ -44,6 +58,17 @@ tasks {
         sourceCompatibility = "21"
         targetCompatibility = "21"
     }
+
+    patchPluginXml {
+        sinceBuild.set("243")
+        untilBuild.set("253.*")
+    }
+
+    //    signPlugin {
+    //        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+    //        privateKey.set(System.getenv("PRIVATE_KEY"))
+    //        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    //    }
 }
 
 kotlin {
