@@ -15,12 +15,12 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
 import com.intellij.ui.JBSplitter
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.components.JBTextArea
-import com.intellij.util.ui.JBUI
 import java.awt.BorderLayout
 import java.awt.Component
 import java.awt.FlowLayout
@@ -30,8 +30,8 @@ import javax.swing.DefaultListModel
 import javax.swing.Icon
 import javax.swing.JLabel
 import javax.swing.JList
-import javax.swing.JOptionPane
 import javax.swing.ListSelectionModel
+import javax.swing.border.EmptyBorder
 
 class EnhancedReviewPanel(private val project: Project) : JBPanel<EnhancedReviewPanel>(BorderLayout()) {
 
@@ -81,11 +81,11 @@ class EnhancedReviewPanel(private val project: Project) : JBPanel<EnhancedReview
             splitterProportionKey = "ai.review.splitter"
 
             firstComponent = JBScrollPane(issuesList).apply {
-                border = JBUI.Borders.empty()
+                border = EmptyBorder(8, 8, 8, 8)
             }
 
             secondComponent = JBScrollPane(issueDetailArea).apply {
-                border = JBUI.Borders.empty()
+                border = EmptyBorder(8, 8, 8, 8)
             }
         }
 
@@ -110,7 +110,7 @@ class EnhancedReviewPanel(private val project: Project) : JBPanel<EnhancedReview
             font = Font(Font.MONOSPACED, Font.PLAIN, 12)
             lineWrap = true
             wrapStyleWord = true
-            border = JBUI.Borders.empty(8)
+            border = EmptyBorder(8, 8, 8, 8)
         }
     }
 
@@ -244,33 +244,115 @@ class EnhancedReviewPanel(private val project: Project) : JBPanel<EnhancedReview
     }
 
     private fun applySuggestion() {
-        // TODO: Implement code application logic
-        // This would require access to the current editor and code context
-        JOptionPane.showMessageDialog(
-            this,
-            "Apply suggestion feature coming soon!",
-            "Feature Preview",
-            JOptionPane.INFORMATION_MESSAGE
-                                     )
+        val selectedIssue = issuesList.selectedValue ?: return
+
+        if (selectedIssue.suggestedCode.isBlank()) {
+            Messages.showWarningDialog(
+                project,
+                "No suggested code available for this issue.",
+                "No Suggestion"
+                                      )
+            return
+        }
+
+        try {
+            // Show dialog with suggested code
+            val dialog = javax.swing.JDialog().apply {
+                title = "Suggested Fix - ${selectedIssue.title}"
+
+                // Set preferred size for better appearance
+                preferredSize = java.awt.Dimension(600, 400)
+                minimumSize = java.awt.Dimension(500, 300)
+
+                layout = java.awt.BorderLayout()
+
+                val textArea = JBTextArea().apply {
+                    text = selectedIssue.suggestedCode
+                    isEditable = false
+                    font = Font(Font.MONOSPACED, Font.PLAIN, 12)
+                    lineWrap = true
+                    wrapStyleWord = true
+
+                    // Make sure text area fills available space
+                    autoscrolls = true
+                }
+
+                val scrollPane = JBScrollPane(textArea).apply {
+                    // Set reasonable scroll pane size
+                    preferredSize = java.awt.Dimension(580, 300)
+                }
+                add(scrollPane, java.awt.BorderLayout.CENTER)
+
+                val buttonPanel = JBPanel<JBPanel<*>>(java.awt.FlowLayout(java.awt.FlowLayout.RIGHT)).apply {
+                    border = EmptyBorder(10, 10, 10, 10)
+                }
+                val copyButton = javax.swing.JButton("Copy to Clipboard").apply {
+                    preferredSize = java.awt.Dimension(120, 25)
+                    addActionListener {
+                        val clipboard = java.awt.Toolkit.getDefaultToolkit().systemClipboard
+                        val selection = java.awt.datatransfer.StringSelection(selectedIssue.suggestedCode)
+                        clipboard.setContents(selection, selection)
+                        dispose()
+                    }
+                }
+                val closeButton = javax.swing.JButton("Close").apply {
+                    preferredSize = java.awt.Dimension(80, 25)
+                    addActionListener { dispose() }
+                }
+
+                buttonPanel.add(copyButton)
+                buttonPanel.add(closeButton)
+                add(buttonPanel, java.awt.BorderLayout.SOUTH)
+
+                // Center the dialog on screen
+                setLocationRelativeTo(null)
+                pack()
+            }
+
+            dialog.isModal = true
+            dialog.isVisible = true
+
+        } catch (ex: Exception) {
+            Messages.showErrorDialog(
+                project,
+                "Failed to display suggestion: ${ex.message}",
+                "Display Error"
+                                    )
+        }
     }
 
     private fun copyToClipboard() {
         val selectedIssue = issuesList.selectedValue ?: return
-        val content = "${selectedIssue.title}\n\n${selectedIssue.description}"
 
-        // Simple implementation - in a real plugin you'd use IntelliJ's clipboard API
         try {
             val clipboard = java.awt.Toolkit.getDefaultToolkit().systemClipboard
-            val selection = java.awt.datatransfer.StringSelection(content)
+            val selection =
+                java.awt.datatransfer.StringSelection(selectedIssue.title + "\n\n" + selectedIssue.description)
             clipboard.setContents(selection, selection)
+            Messages.showInfoMessage(
+                project,
+                "Copied issue details to clipboard!",
+                "Copied"
+                                    )
         } catch (e: Exception) {
-            // Fallback - just show the content
-            JOptionPane.showMessageDialog(
-                this,
-                content,
-                "Copy to Clipboard",
-                JOptionPane.INFORMATION_MESSAGE
-                                         )
+            // Fallback to AWT clipboard
+            try {
+                val clipboard = java.awt.Toolkit.getDefaultToolkit().systemClipboard
+                val selection =
+                    java.awt.datatransfer.StringSelection(selectedIssue.title + "\n\n" + selectedIssue.description)
+                clipboard.setContents(selection, selection)
+                Messages.showInfoMessage(
+                    project,
+                    "Copied issue details to clipboard!",
+                    "Copied"
+                                        )
+            } catch (ex: Exception) {
+                Messages.showErrorDialog(
+                    project,
+                    "Failed to copy to clipboard: ${ex.message}",
+                    "Copy Error"
+                                        )
+            }
         }
     }
 
