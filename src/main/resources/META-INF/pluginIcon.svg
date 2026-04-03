@@ -1,10 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z" fill="url(#paint0_linear)" />
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345" gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62" />
-            <stop offset="0.5404" stop-color="#3C99CC" />
-            <stop offset="0.93739" stop-color="#6B57FF" />
-        </linearGradient>
-    </defs>
+    <!-- Background circle -->
+    <circle cx="20" cy="20" r="18" fill="#1E1E1E" />
+
+    <!-- Brain-inspired shape for AI representation -->
+    <path d="M20 6C15.5 6 12 9.5 12 14C12 17 14.5 19.5 18 20.5V26H16V30H24V26H22V20.5C25.5 19.5 28 17 28 14C28 9.5 24.5 6 20 6Z" fill="#4A9EFF" />
+    <circle cx="16" cy="14" r="2" fill="#FFFFFF" />
+    <circle cx="24" cy="14" r="2" fill="#FFFFFF" />
+    <path d="M18 20C18 19 19 18 20 18C21 18 22 19 22 20H18Z" fill="#FFFFFF" />
+
+    <!-- Code analysis symbol (curly braces) -->
+    <path d="M12 12L10 14L12 16M28 12L30 14L28 16" stroke="#FFD700" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Microchip/processor lines for AI processing -->
+    <rect x="14" y="24" width="12" height="2" rx="1" fill="#FF6B6B" />
+    <rect x="14" y="27" width="8" height="2" rx="1" fill="#FF6B6B" />
+    <rect x="14" y="30" width="10" height="2" rx="1" fill="#FF6B6B" />
+
+    <!-- Sparkle for "smart" AI -->
+    <path d="M28 8L29 10L31 9L29 8L30 6L28 8Z" fill="#FFD700" />
 </svg>

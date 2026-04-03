@@ -50,18 +50,18 @@ echo ""
 echo "⚙️  Checking plugin.xml configuration..."
 
 plugin_id=$(grep '<id>' src/main/resources/META-INF/plugin.xml | head -1)
-if [[ $plugin_id == *"com.simon.ai-code-review-plugin"* ]]; then
+if [[ $plugin_id == *"com.simon.ma.ai-code-reviewer"* ]]; then
     echo "✅ Plugin ID is correct"
 else
-    echo "❌ Plugin ID needs to be 'com.simon.ai-code-review-plugin'"
+    echo "❌ Plugin ID needs to be 'com.simon.ma.ai-code-reviewer'"
     exit 1
 fi
 
 plugin_name=$(grep '<name>' src/main/resources/META-INF/plugin.xml | head -1)
-if [[ $plugin_name == *"AI Code Review"* ]]; then
+if [[ $plugin_name == *"AI Code Reviewer"* ]]; then
     echo "✅ Plugin name is correct"
 else
-    echo "❌ Plugin name should be 'AI Code Review'"
+    echo "❌ Plugin name should be 'AI Code Reviewer'"
     exit 1
 fi
 
@@ -116,7 +116,7 @@ echo ""
 echo "📦 Creating distribution package..."
 ./gradlew buildPlugin
 
-latest_zip=$(ls -t build/distributions/ai-code-review-plugin-*.zip | head -1)
+latest_zip=$(ls -t build/distributions/ai-code-reviewer-plugin-*.zip build/distributions/ai-code-review-plugin-*.zip 2>/dev/null | head -1)
 if [ -n "$latest_zip" ]; then
     echo "✅ Distribution package created: $latest_zip"
     echo ""

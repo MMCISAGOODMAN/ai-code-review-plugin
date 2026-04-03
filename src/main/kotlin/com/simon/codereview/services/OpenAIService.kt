@@ -17,7 +17,8 @@ import java.io.IOException
 
 class OpenAIService(
     private val apiKey: String,
-    private val aiEndpoint: String = "https://api.chatanywhere.tech/v1/chat/completions"
+    private val aiEndpoint: String,
+    private val selectedModel: String
                    ) {
     private val client = OkHttpClient()
     private val gson = Gson()
@@ -42,7 +43,7 @@ class OpenAIService(
         """.trimIndent()
 
         val requestBody = mapOf(
-            "model" to "gpt-3.5-turbo",
+            "model" to selectedModel,
             "messages" to listOf(
                 mapOf("role" to "user", "content" to prompt)
                                 ),

@@ -1,10 +1,10 @@
-# AI Code Review Plugin
+# AI Code Reviewer Plugin
 
 <div align="center">
 
 ![Plugin Logo](src/main/resources/META-INF/pluginIcon.svg)
 
-**English | [简体中文](#ai代码审查插件)**
+**English | [简体中文](#ai代码审查师)**
 
 A powerful AI-powered code review tool for IntelliJ IDEA that helps developers identify bugs, performance issues,
 security vulnerabilities, and coding best practices.
@@ -48,7 +48,7 @@ security vulnerabilities, and coding best practices.
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd ai-code-review-plugin
+cd ai-code-reviewer-plugin
 
 # Build the plugin
 ./gradlew build
@@ -63,7 +63,7 @@ cd ai-code-review-plugin
    ```bash
    ./gradlew build
    ```
-2. Find the plugin at: `build/libs/ai-code-review-plugin.jar`
+2. Find the plugin at: `build/libs/ai-code-reviewer-plugin.jar`
 3. In IntelliJ IDEA: **File > Settings > Plugins > Install Plugin from Disk...**
 
 ### **Configuration**
@@ -72,10 +72,10 @@ After installation:
 
 1. **Open Settings**: **File > Settings > Tools > AI Code Review**
 2. **Configure API Key**: Enter your OpenAI API key or compatible service key
-3. **Set AI Endpoint**: Choose your preferred AI service endpoint:
+3. **Set AI Endpoint**: Enter any AI service endpoint URL:
     - `https://api.openai.com/v1/chat/completions` (Official OpenAI)
-    - `https://api.chatanywhere.tech/v1/chat/completions` (Default proxy)
-    - Any other OpenAI-compatible endpoint
+   - `https://your-custom-endpoint.com/v1/chat/completions` (Custom service)
+   - Any OpenAI-compatible API endpoint
 4. **Save Settings**: Click Apply
 
 ### **Usage**
@@ -194,9 +194,9 @@ Made with ❤️ for the developer community
 
 ---
 
-<a name="ai代码审查插件"></a>
+<a name="ai代码审查师"></a>
 
-# AI代码审查插件
+# AI代码审查师
 
 <div align="center">
 
@@ -245,7 +245,7 @@ Made with ❤️ for the developer community
 ```bash
 # 克隆仓库
 git clone <repository-url>
-cd ai-code-review-plugin
+cd ai-code-reviewer-plugin
 
 # 构建插件
 ./gradlew build
@@ -260,14 +260,14 @@ cd ai-code-review-plugin
    ```bash
    ./gradlew build
    ```
-2. 找到插件位置：`build/libs/ai-code-review-plugin.jar`
+2. 找到插件位置：`build/libs/ai-code-reviewer-plugin.jar`
 3. 在IntelliJ IDEA中：**文件 > 设置 > 插件 > 从磁盘安装插件...**
 
 ### **配置**
 
 安装后：
 
-1. **打开设置**：**文件 > 设置 > 工具 > AI代码审查**
+1. **打开设置**：**文件 > 设置 > 工具 > AI代码审查师**
 2. **配置API密钥**：输入您的OpenAI API密钥或兼容服务的密钥
 3. **设置AI端点**：选择您首选的AI服务端点：
     - `https://api.openai.com/v1/chat/completions` (官方OpenAI)
@@ -279,7 +279,7 @@ cd ai-code-review-plugin
 
 1. **选择Java代码**：在编辑器中高亮显示任何Java代码
 2. **触发审查**：
-    - 右键单击 → "AI代码审查"
+    - 右键单击 → "AI代码审查师"
     - 或使用键盘快捷键：**Ctrl+Alt+R** (Mac上为Cmd+Alt+R)
 3. **查看结果**：在"AI审查"工具窗口中查看详细分析
 4. **应用建议**：点击"应用建议"，在专业对话框中查看建议的修复

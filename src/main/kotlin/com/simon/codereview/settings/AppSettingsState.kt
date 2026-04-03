@@ -20,7 +20,8 @@ import com.intellij.openapi.components.Storage
 class AppSettingsState : PersistentStateComponent<AppSettingsState.State> {
     data class State(
         var apiKey: String = "",
-        var aiEndpoint: String = "https://api.chatanywhere.tech/v1/chat/completions"
+        var aiEndpoint: String = "",
+        var selectedModel: String = ""
                     )
 
     private var myState = State()
@@ -45,5 +46,11 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState.State> {
         get() = myState.aiEndpoint
         set(value) {
             myState.aiEndpoint = value
+        }
+
+    var selectedModel: String
+        get() = myState.selectedModel
+        set(value) {
+            myState.selectedModel = value
         }
 }

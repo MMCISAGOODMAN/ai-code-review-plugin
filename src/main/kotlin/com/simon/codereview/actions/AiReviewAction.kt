@@ -46,7 +46,8 @@ class AiReviewAction : AnAction() {
                     if (aiEndpoint.isBlank()) {
                         throw IllegalStateException("AI Endpoint not set. Please configure in Settings > Tools > AI Code Review")
                     }
-                    val service = OpenAIService(apiKey, aiEndpoint)
+                    val selectedModel = AppSettingsState.getInstance().selectedModel
+                    val service = OpenAIService(apiKey, aiEndpoint, selectedModel)
                     val reviewResult = service.reviewCode(selectedText)
 
                     ApplicationManager.getApplication().invokeLater {
