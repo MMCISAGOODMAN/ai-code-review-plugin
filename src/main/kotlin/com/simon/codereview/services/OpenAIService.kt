@@ -15,7 +15,10 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
-class OpenAIService(private val apiKey: String) {
+class OpenAIService(
+    private val apiKey: String,
+    private val aiEndpoint: String = "https://api.chatanywhere.tech/v1/chat/completions"
+                   ) {
     private val client = OkHttpClient()
     private val gson = Gson()
 
@@ -49,7 +52,7 @@ class OpenAIService(private val apiKey: String) {
 
         val json = gson.toJson(requestBody)
         val request = Request.Builder()
-            .url("https://api.chatanywhere.tech/v1/chat/completions")
+            .url(aiEndpoint)
             .header("Authorization", "Bearer $apiKey")
             .header("Content-Type", "application/json")
             .post(json.toRequestBody("application/json".toMediaType()))
