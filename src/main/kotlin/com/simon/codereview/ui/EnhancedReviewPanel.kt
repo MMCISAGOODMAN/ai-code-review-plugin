@@ -3,7 +3,7 @@
  *
  * Created on 2026-04-03
  *
- * Copyright (C) 2026 Volkswagen AG, All rights reserved.
+ * Copyright (C) 2026 Simon Ma, All rights reserved.
  */
 
 package com.simon.codereview.ui
