@@ -19,9 +19,10 @@ import com.intellij.openapi.components.Storage
       )
 class AppSettingsState : PersistentStateComponent<AppSettingsState.State> {
     data class State(
-        var apiKey: String = "",
+        var aiApiKey: String = "",
         var aiEndpoint: String = "",
-        var selectedModel: String = ""
+        var selectedModel: String = "",
+        var selectedLanguage: String = "English"
                     )
 
     private var myState = State()
@@ -36,10 +37,10 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState.State> {
             ApplicationManager.getApplication().getService(AppSettingsState::class.java)
     }
 
-    var apiKey: String
-        get() = myState.apiKey
+    var aiApiKey: String
+        get() = myState.aiApiKey
         set(value) {
-            myState.apiKey = value
+            myState.aiApiKey = value
         }
 
     var aiEndpoint: String
@@ -52,5 +53,11 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState.State> {
         get() = myState.selectedModel
         set(value) {
             myState.selectedModel = value
+        }
+
+    var selectedLanguage: String
+        get() = myState.selectedLanguage
+        set(value) {
+            myState.selectedLanguage = value
         }
 }

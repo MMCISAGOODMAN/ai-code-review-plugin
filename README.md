@@ -1,4 +1,4 @@
-# AI Code Reviewer Plugin
+# AI Code Reviewer Plugin v1.2.0
 
 <div align="center">
 
@@ -72,11 +72,12 @@ After installation:
 
 1. **Open Settings**: **File > Settings > Tools > AI Code Review**
 2. **Configure API Key**: Enter your OpenAI API key or compatible service key
-3. **Set AI Endpoint**: Enter any AI service endpoint URL:
+3. **Select AI Model**: Choose the AI model you want to use (e.g., `gpt-4`, `gpt-3.5-turbo`, or your custom model name)
+4. **Set AI Endpoint**: Enter any AI service endpoint URL:
     - `https://api.openai.com/v1/chat/completions` (Official OpenAI)
    - `https://your-custom-endpoint.com/v1/chat/completions` (Custom service)
    - Any OpenAI-compatible API endpoint
-4. **Save Settings**: Click Apply
+5. **Save Settings**: Click Apply
 
 ### **Usage**
 
@@ -95,16 +96,45 @@ After installation:
 The plugin works with any OpenAI-compatible API:
 
 - **OpenAI Official**: https://api.openai.com/v1/chat/completions
+- **Azure OpenAI**: Regional enterprise deployments
 - **Proxy Services**: Various compatible proxy endpoints
-- **Self-hosted Models**: Custom AI model deployments
+- **Self-hosted Models**: Custom AI model deployments (Llama, GPT, etc.)
 - **Enterprise Solutions**: Internal AI services
+
+#### 🌍 **Multi-Language Support**
+
+- **8 languages supported**: English, 中文, 日本語, 한국어, Español, Français, Deutsch, Português
+- Review results displayed in user-selected language
+- Language selection available in settings panel
+
+#### ⚡ **Advanced Features**
+
+- **Unlimited File Size**: No character limit for Java code analysis
+- **Intelligent Caching**: Reduces API calls for repeated code analysis
+- **Smart Configuration**: Real-time validation and model suggestions
+- **Comprehensive Logging**: Detailed error information in IDE logs
 
 ### **Analysis Capabilities**
 
-- **Code Length Limit**: Maximum 10,000 characters per analysis
+- **Unlimited Code Length**: No character limit for Java code analysis (automatically chunks large files)
+- **Smart Code Chunking**: Intelligently splits large code into logical segments while preserving context
+- **Comprehensive Reports**: Generates detailed analysis for each segment plus global architecture suggestions
 - **Language Support**: Primarily Java (can be extended)
 - **Issue Types**: Bugs, Performance, Security, Style, Suggestions
 - **Response Format**: Structured markdown with code blocks
+
+#### 🌍 **Multi-Language Review Results**
+
+- **8 languages supported**: English, 中文, 日本語, 한국어, Español, Français, Deutsch, Português
+- AI generates prompts and provides review results in the selected language
+- Users can switch between languages in the plugin settings
+
+#### ⚡ **Performance Features**
+
+- **Intelligent Caching**: 1-hour cache for repeated code analysis to reduce API calls
+- **Smart Configuration Validation**: Real-time validation of API keys, endpoints, and model names
+- **Model Suggestions**: Intelligent recommendations based on your AI service endpoint type
+- **Error Logging**: Detailed error logging for troubleshooting in IDE logs
 
 ### **System Requirements**
 
@@ -144,12 +174,13 @@ https://api.chatanywhere.tech/v1/chat/completions
 1. **API Connection Failed**
     - Verify your API key is correct
     - Check network connectivity
-    - Ensure endpoint URL is valid
+   - Ensure endpoint URL is valid and model name is correct
+   - Confirm the AI service supports the selected model
 
-2. **Rate Limiting**
-    - Your API plan may have usage limits
-    - Consider upgrading your OpenAI plan
-    - Try again later
+2. **Model Not Found Error**
+    - Double-check the model name spelling (e.g., `gpt-4`, `gpt-3.5-turbo`)
+    - Consult your AI service provider for available models
+    - Some services require specific model name formats
 
 3. **Plugin Not Visible**
     - Run `./gradlew runIde` instead of manual installation

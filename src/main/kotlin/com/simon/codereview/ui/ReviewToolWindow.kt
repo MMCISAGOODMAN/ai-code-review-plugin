@@ -49,7 +49,7 @@ object ReviewToolWindowManager {
     }
 
     fun showError(project: Project, error: String) {
-        getWindow(project)?.clearResults()
+        getWindow(project)?.displayErrorMessage(error)
         openToolWindow(project)
     }
 

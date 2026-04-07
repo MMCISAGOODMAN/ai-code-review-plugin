@@ -362,6 +362,15 @@ class EnhancedReviewPanel(private val project: Project) : JBPanel<EnhancedReview
         issueDetailArea.text = ""
         statusLabel.text = "No review results"
     }
+
+    fun displayErrorMessage(error: String) {
+        issues.clear()
+        updateIssuesList()
+        issueDetailArea.text = "❌ Error: $error"
+        issueDetailArea.font = Font(Font.MONOSPACED, Font.BOLD, 12)
+        issueDetailArea.foreground = javax.swing.UIManager.getColor("Label.errorForeground")
+        statusLabel.text = "Error occurred during code review"
+    }
 }
 
 // Data classes

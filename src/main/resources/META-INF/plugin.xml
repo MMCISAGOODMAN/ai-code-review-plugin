@@ -24,11 +24,11 @@
         • <b>Smart Suggestions</b> - Provides actionable code improvements with professional dialogs<br><br>
 
         <b>Flexible Configuration:</b><br>
-        • Configurable AI endpoints (OpenAI, proxies, self-hosted models)<br>
-        • Secure API key management<br>
+        • Configurable AI endpoints (OpenAI, Claude, proxies, self-hosted models)<br>
+        • Universal API key support for multiple AI providers<br>
         • Professional suggestion dialogs with proper sizing and centering<br>
         • Copy-to-clipboard functionality<br>
-        • Multi-language support (English/Chinese)<br>
+        • Multi-language review feedback (English/Chinese)<br>
         • Keyboard shortcuts and context menu integration<br><br>
 
         <b>Perfect for:</b><br>
